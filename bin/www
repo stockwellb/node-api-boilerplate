@@ -1,0 +1,19 @@
+const { env, app: { port } } = require('../src/config/config');
+const app = require('../src/app');
+const logger = require('../src/api/utils/logger')('server');
+
+const server = app.listen(port, () =>
+  logger.info(`app started on port ${port} (${env}). PID=${process.pid}.`)
+);
+
+const close = () => {
+  logger.info('responding to SIGTERM.');
+  server.close(function() {
+    logger.info('closed server.');
+    process.exit(0);
+  });
+};
+
+process.on('SIGTERM', close);
+
+module.exports = app;
