@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const List = sequelize.define(
-    'list',
+    'List',
     {
       name: {
         type: DataTypes.STRING,
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   List.associate = models => {
     // noinspection Annotator
-    List.hasMany(models.list_item, {
+    List.hasMany(models.ListItem, {
       foreignKey: 'listId',
       as: 'listItems'
     });

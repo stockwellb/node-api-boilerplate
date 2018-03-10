@@ -1,9 +1,9 @@
 const { RecordNotFoundError } = require('../errors');
 const logger = require('../utils/logger')('service');
 // noinspection Annotator
-const List = require('../models').list;
+const List = require('../models').List;
+const ListItem = require('../models').ListItem;
 // noinspection Annotator
-const ListItem = require('../models').list_item;
 
 const add = data => {
   logger.trace(`Adding: ${JSON.stringify(data)}.`);

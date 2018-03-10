@@ -1,7 +1,6 @@
 'use strict';
 const records = require('../../data').records;
-const List = require('../models').list;
-const ListItem = require('../models').list_item;
+const { List, ListItem } = require('../models');
 
 // noinspection JSUnusedLocalSymbols
 module.exports = {
@@ -25,6 +24,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    queryInterface.bulkDelete('lists');
+    queryInterface.bulkDelete('Lists');
   }
 };

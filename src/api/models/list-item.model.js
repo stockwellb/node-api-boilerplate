@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const ListItem = sequelize.define(
-    'list_item',
+    'ListItem',
     {
       content: {
         type: DataTypes.STRING,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   ListItem.associate = models => {
-    ListItem.belongsTo(models.list, {
+    ListItem.belongsTo(models.List, {
       foreignKey: 'listId',
       onDelete: 'CASCADE'
     });

@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'test';
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../../bin/www');
-const List = require('../api/models').list;
+const List = require('../api/models').List;
 // noinspection JSUnusedLocalSymbols
 const should = chai.should();
 const records = require('../data').records;
