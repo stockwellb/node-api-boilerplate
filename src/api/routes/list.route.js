@@ -4,6 +4,7 @@ const validate = require('express-validation');
 const controller = require('../controllers/list.controller');
 const itemRoutes = require('./list-item.route');
 const paginate = require('express-paginate');
+const authenticate = require('../middlewares/auth.middleware');
 const { get, list, add, update } = require('../validations/list.validation');
 const { max, maxLimit } = require('../../config/config').pagination;
 
@@ -21,13 +22,13 @@ router.use('/', paginate.middleware(max, maxLimit));
 
 router
   .route('/')
-  .get(validate(list), controller.list)
-  .post(validate(add), controller.add);
+  .get(authenticate, validate(list), controller.list)
+  .post(authenticate, validate(add), controller.add);
 
 router
   .route('/:id')
-  .get(validate(get), controller.get)
-  .patch(validate(update), controller.update)
-  .delete(controller.remove);
+  .get(authenticate, validate(get), controller.get)
+  .patch(authenticate, validate(update), controller.update)
+  .delete(authenticate, controller.remove);
 
 module.exports = router;

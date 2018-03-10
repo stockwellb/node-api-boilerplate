@@ -2,6 +2,7 @@ const express = require('express');
 // noinspection NpmUsedModulesInstalled
 const validate = require('express-validation');
 const paginate = require('express-paginate');
+const authenticate = require('../middlewares/auth.middleware');
 const { max, maxLimit } = require('../../config/config').pagination;
 const controller = require('../controllers/list-item.controller');
 const {
@@ -23,13 +24,13 @@ router.use('/', paginate.middleware(max, maxLimit));
 
 router
   .route('/')
-  .get(validate(list), controller.list)
-  .post(validate(add), controller.add);
+  .get(authenticate, validate(list), controller.list)
+  .post(authenticate, validate(add), controller.add);
 
 router
   .route('/:listItemId')
-  .get(validate(get), controller.get)
-  .patch(validate(update), controller.update)
-  .delete(controller.remove);
+  .get(authenticate, validate(get), controller.get)
+  .patch(authenticate, validate(update), controller.update)
+  .delete(authenticate, controller.remove);
 
 module.exports = router;

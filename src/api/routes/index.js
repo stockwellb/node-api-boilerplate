@@ -10,7 +10,7 @@ redirect = (req, res, next) => {
 };
 
 router.use('/status', statusRoutes);
-router.use('/register', authRoutes);
+router.use('/auth', authRoutes);
 router.use('/lists', listRoutes);
 
 router

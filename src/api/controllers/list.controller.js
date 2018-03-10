@@ -46,6 +46,7 @@ const remove = (req, res, next) => {
 };
 
 const list = (req, res, next) => {
+    console.log(res.locals.user)
   Promise.all([
     ListService.list(req.skip, req.query.limit),
     ListService.count()
