@@ -16,6 +16,19 @@ const get = id => {
   });
 };
 
+const getByEmail = email => {
+  logger.trace(`Getting: ${email}.`);
+  return User.findAll({ where: { email: email } }).then(users => {
+    if (users.length === 0) {
+      throw new RecordNotFoundError({
+        message: 'User not found.'
+      });
+    }
+    return users[0];
+  });
+};
+
 module.exports = {
-  get
+  get,
+  getByEmail
 };

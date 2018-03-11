@@ -9,7 +9,8 @@ require('dotenv-safe').load({
 
 module.exports = {
   auth: {
-    secret: process.env.SECRET
+    secret: process.env.SECRET,
+    expiresIn: 86400
   },
   pagination: {
     max: 100,

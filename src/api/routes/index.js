@@ -2,20 +2,13 @@ const express = require('express');
 const router = express.Router();
 const listRoutes = require('./list.route');
 const statusRoutes = require('./status.route');
-const authRoutes = require('./auth.route');
+const authController = require('../controllers/auth.controller');
 
-// noinspection JSUnusedLocalSymbols
-redirect = (req, res, next) => {
-  res.redirect('/status');
-};
+router.route('/register').post(authController.register);
+router.route('/login').post(authController.login);
 
+// other routers
 router.use('/status', statusRoutes);
-router.use('/auth', authRoutes);
 router.use('/lists', listRoutes);
-
-router
-  .route('/')
-  .get(redirect)
-  .head(redirect);
 
 module.exports = router;
